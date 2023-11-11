@@ -732,31 +732,31 @@ func (suite *NewPDNSProviderTestSuite) TestPDNSProviderCreateTLS() {
 
 	assert.Nil(suite.T(), newProvider(TLSConfig{
 		SkipTLSVerify:         true,
-		CAFilePath:            "../../internal/testresources/ca.pem",
-		ClientCertFilePath:    "../../internal/testresources/client-cert.pem",
-		ClientCertKeyFilePath: "../../internal/testresources/client-cert-key.pem",
+		CAFilePath:            "../../../internal/testresources/ca.pem",
+		ClientCertFilePath:    "../../../internal/testresources/client-cert.pem",
+		ClientCertKeyFilePath: "../../../internal/testresources/client-cert-key.pem",
 	}), "Disabled TLS Config with additional flags should raise no error")
 
 	assert.Nil(suite.T(), newProvider(TLSConfig{}), "Enabled TLS Config without --tls-ca should raise no error")
 
 	assert.Nil(suite.T(), newProvider(TLSConfig{
-		CAFilePath: "../../internal/testresources/ca.pem",
+		CAFilePath: "../../../internal/testresources/ca.pem",
 	}), "Enabled TLS Config with --tls-ca should raise no error")
 
 	assert.Error(suite.T(), newProvider(TLSConfig{
-		CAFilePath:         "../../internal/testresources/ca.pem",
-		ClientCertFilePath: "../../internal/testresources/client-cert.pem",
+		CAFilePath:         "../../../internal/testresources/ca.pem",
+		ClientCertFilePath: "../../../internal/testresources/client-cert.pem",
 	}), "Enabled TLS Config with --tls-client-cert only should raise an error")
 
 	assert.Error(suite.T(), newProvider(TLSConfig{
-		CAFilePath:            "../../internal/testresources/ca.pem",
-		ClientCertKeyFilePath: "../../internal/testresources/client-cert-key.pem",
+		CAFilePath:            "../../../internal/testresources/ca.pem",
+		ClientCertKeyFilePath: "../../../internal/testresources/client-cert-key.pem",
 	}), "Enabled TLS Config with --tls-client-cert-key only should raise an error")
 
 	assert.Nil(suite.T(), newProvider(TLSConfig{
-		CAFilePath:            "../../internal/testresources/ca.pem",
-		ClientCertFilePath:    "../../internal/testresources/client-cert.pem",
-		ClientCertKeyFilePath: "../../internal/testresources/client-cert-key.pem",
+		CAFilePath:            "../../../internal/testresources/ca.pem",
+		ClientCertFilePath:    "../../../internal/testresources/client-cert.pem",
+		ClientCertKeyFilePath: "../../../internal/testresources/client-cert-key.pem",
 	}), "Enabled TLS Config with all flags should raise no error")
 }
 
