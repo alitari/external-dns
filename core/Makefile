@@ -55,15 +55,15 @@ IMG_PLATFORM  ?= linux/amd64,linux/arm64,linux/arm/v7
 IMG_PUSH      ?= true
 IMG_SBOM      ?= none
 
-build: build/$(BINARY)
+build: ../build/$(BINARY)
 
 build/$(BINARY): $(SOURCES)
 	CGO_ENABLED=0 go build -o build/$(BINARY) $(BUILD_FLAGS) -ldflags "$(LDFLAGS)" .
 
 build.push/multiarch: ko
 	KO_DOCKER_REPO=${IMAGE} \
-    VERSION=${VERSION} \
-    ko build --tags ${VERSION} --platform=${IMG_PLATFORM} --bare --sbom ${IMG_SBOM} --push=${IMG_PUSH} .
+	VERSION=${VERSION} \
+	ko build --tags ${VERSION} --platform=${IMG_PLATFORM} --bare --sbom ${IMG_SBOM} --push=${IMG_PUSH} .
 
 build.image/multiarch:
 	$(MAKE) IMG_PUSH=false build.push/multiarch
